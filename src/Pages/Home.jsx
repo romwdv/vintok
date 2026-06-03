@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Home = () => {
-  const [data, setData] = useState(null);
+  const [dataFetch, setDataFetch] = useState(null);
   const [IsLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -11,16 +11,18 @@ const Home = () => {
       const response = await axios.get(
         `${import.meta.env.VITE_API_URL}/offers`,
       );
-      setData(response.data);
+
+      setDataFetch(response.data);
       setIsLoading(false);
     };
     fetchData();
   }, []);
-  console.log(data);
+
+  console.log(dataFetch);
 
   if (IsLoading) return <p>on load</p>;
   return (
-    <div className="content">
+    <>
       <div className="hero">
         <img src={hero} alt="heo section" />
       </div>
@@ -59,7 +61,7 @@ const Home = () => {
         velit consequatur beatae laboriosam dolore eius debitis repudiandae cum
         odit, delectus sed.
       </div>
-    </div>
+    </>
   );
 };
 
