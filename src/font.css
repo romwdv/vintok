@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "V_Inter_Regular_375";
+  src: url(../src/assets/fonts/V_Inter_Regular_375.woff2) format("woff2");
+  font-weight: 375;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "V_Inter_Medium";
+  src: url(../src/assets/fonts/V_Inter_Medium.woff2) format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "V_Inter_Semibold_580";
+  src: url(../src/assets/fonts/V_Inter_Semibold_580.woff2) format("woff2");
+  font-weight: 580;
+  font-style: normal;
+  font-display: swap;
+}
