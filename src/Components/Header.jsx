@@ -1,8 +1,13 @@
 import logo from "../assets/logo.png";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ token, setToken }) => {
+  const navigate = useNavigate();
+
+  const cookies = Cookies.get("vintok");
   return (
     <header>
       <div className="container">
@@ -15,9 +20,23 @@ const Header = () => {
           placeholder="Rechercher un article ou un membre"
         />
         <div className="nav-header">
-          <Link to={"/signup"}>
-            <button className="login">S'incrire | Se connecter</button>
-          </Link>
+          {!cookies && (
+            <Link to={"/signup"}>
+              <button className="login">S'incrire | Se connecter</button>
+            </Link>
+          )}
+          {cookies && (
+            <button
+              className="logout"
+              onClick={() => {
+                Cookies.remove("vintok");
+                setToken(null);
+                navigate("/");
+              }}
+            >
+              Se déconnecter
+            </button>
+          )}
           <button className="sell-article">Vends tes articles</button>
           <button className="help">
             <IoIosHelpCircleOutline size={30} />

@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const Signup = ({ setToken }) => {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const Login = ({ token, setToken }) => {
   const navigate = useNavigate();
-
-  return (
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  console.log(token);
+  return !token ? (
     <section className="container">
       <div>
         <form
@@ -17,23 +16,22 @@ const Signup = ({ setToken }) => {
             try {
               ev.preventDefault();
               const response = await axios.post(
-                `${import.meta.env.VITE_API_URL}/user/signup`,
+                `${import.meta.env.VITE_API_URL}/user/login`,
                 {
                   email,
-                  username,
                   password,
-                  newsletter: true,
                 },
               );
               setToken(response.data.token);
               Cookies.set("vintok", response.data.token);
+              console.log(response.data);
               navigate("/");
             } catch (error) {
               alert(error.response);
             }
           }}
         >
-          <h2>Inscrit-toi avec ton email</h2>
+          <h2>Se connecter</h2>
           <input
             type="text"
             name="email"
@@ -42,14 +40,7 @@ const Signup = ({ setToken }) => {
             placeholder="Email"
             onChange={(event) => setEmail(event.target.value)}
           />
-          <input
-            type="text"
-            name="username"
-            id="username"
-            value={username}
-            placeholder="Nom d'utilisateur"
-            onChange={(event) => setUsername(event.target.value)}
-          />
+
           <input
             type="password"
             name="password"
@@ -61,14 +52,16 @@ const Signup = ({ setToken }) => {
           <input type="submit" name="submit" id="submit" value="Continuez" />
         </form>
         <p>
-          Tu as déjà un compte ?{" "}
-          <Link to={"/login"}>
-            <span>Se connecter</span>
+          Tu n'as pas de compte ?
+          <Link to={"/signup"}>
+            <span>S'inscrire</span>
           </Link>
         </p>
       </div>
     </section>
+  ) : (
+    <Navigate to="/" />
   );
 };
 
-export default Signup;
+export default Login;

@@ -1,18 +1,26 @@
 import "./App.css";
+import { useState } from "react";
 import Header from "./Components/Header";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import Offer from "./Pages/Offer";
 import Signup from "./Pages/Signup";
+import Login from "./Pages/Login";
 
 function App() {
+  const [token, setToken] = useState();
+
   return (
     <Router>
-      <Header />
+      <Header token={token} setToken={setToken} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/offer/:id" element={<Offer />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<Signup setToken={setToken} />} />
+        <Route
+          path="/login"
+          element={<Login token={token} setToken={setToken} />}
+        />
       </Routes>
     </Router>
   );
