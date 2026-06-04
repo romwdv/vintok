@@ -30,7 +30,7 @@ const Signup = () => {
               setToken(response.data.token);
               Cookies.set("vintok", token);
               console.log(token);
-              navigate("/signup");
+              navigate("/");
             } catch (error) {
               alert(error.response);
             }
