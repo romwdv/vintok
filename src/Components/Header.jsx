@@ -1,11 +1,14 @@
 import logo from "../assets/logo.png";
 import { IoIosHelpCircleOutline } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <header>
       <div className="container">
-        <img src={logo} alt="logo vintok" />
+        <Link to={"/"}>
+          <img src={logo} alt="logo vintok" />
+        </Link>
         <input
           type="text"
           className="search-text"

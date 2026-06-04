@@ -15,14 +15,18 @@ body {
   font-size: 16px;
 }
 
+h2 {
+  font-family: "V_Inter_Semibold_580";
+  font-size: 1.37rem;
+}
+
 header {
-  height: 50px;
+  height: 70px;
   width: 100vw;
   position: sticky;
   top: 0;
   z-index: 3000;
   background-color: white;
-  margin-bottom: 30px;
   border-bottom: 1px solid lightgrey;
 }
 
@@ -30,7 +34,7 @@ header {
   display: flex;
   max-width: 1220px;
   width: 100%;
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
 header .container {
@@ -39,7 +43,7 @@ header .container {
   gap: 30px;
   max-width: 1220px;
   width: 100%;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 
 .nav-header {
@@ -102,8 +106,6 @@ header .container {
 
 /* Products */
 
-/* Section qui contient tout */
-
 /* Le conteneur flex */
 .container {
   display: flex;
@@ -142,15 +144,124 @@ header .container {
 
 /* Offer */
 
+.offer {
+  display: flex;
+  gap: 50px;
+  width: 100%;
+}
+
+.info {
+  margin-bottom: 15px;
+}
+
 .pictures {
   display: flex;
+  gap: 15px;
+  flex: 2;
+}
+
+.pictures img {
+  border-radius: 5px;
 }
 
 .main_picture {
-  height: 583px;
+  width: 100%;
+  flex: 3;
 }
 
-.thumb.picture {
+.pictures .thumb_picture {
   display: flex;
   flex-direction: column;
+  flex: 1;
+}
+
+.thumb_picture img {
+  width: 190px;
+  object-fit: cover;
+}
+
+.product_info {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 15px;
+  flex: 1;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
+}
+
+.price span:last-child {
+  color: var(--primary-color);
+}
+
+.priceTax {
+  color: var(--primary-color);
+  font-family: "V_Inter_Medium";
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.brand,
+.size,
+.etat,
+.couleur,
+.date {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Signup */
+
+section.container {
+  justify-content: center;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  width: 500px;
+  margin-top: 50px;
+}
+
+section.container h2 {
+  margin: 35px 0;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+form input {
+  margin-bottom: 56px;
+  border: none;
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 8px;
+  outline-width: 0;
+}
+
+input:focus-visible {
+  outline: none;
+  border-bottom: 1px solid rgb(85, 85, 85);
+}
+
+input::placeholder {
+  font-size: 1.2rem;
+}
+
+input[type="submit"] {
+  background-color: var(--primary-color);
+  color: white;
+  font-family: "V_Inter_Medium";
+  font-size: 1.3rem;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+input[type="submit"]:hover {
+  background-color: var(--primary-color-hover);
 }

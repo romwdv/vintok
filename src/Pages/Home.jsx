@@ -32,7 +32,7 @@ const Home = () => {
           {dataFetch.offers.map((item) => {
             const marque = item.product_details.find((d) => d.MARQUE)?.MARQUE;
             const taille = item.product_details.find((d) => d.TAILLE)?.TAILLE;
-            const etat = item.product_details.find((d) => d.ÉTAT)?.ÉTAT;
+            // const etat = item.product_details.find((d) => d.ÉTAT)?.ÉTAT;
 
             return (
               <Link
@@ -44,8 +44,8 @@ const Home = () => {
                 <img src={item.product_image.url} alt={item.product_name} />
                 {marque && <span>{marque}</span>}
                 <div className="product_desc">
-                  {taille && <span>{taille} - </span>}
-                  {etat && <span>{etat}</span>}
+                  {taille && <span>{taille} </span>}
+                  {/* {etat && <span>{etat}</span>} */}
                 </div>
                 {item.product_price && (
                   <span>{Number(item.product_price).toFixed(2)} €</span>
