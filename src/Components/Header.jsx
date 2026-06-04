@@ -15,7 +15,9 @@ const Header = () => {
           placeholder="Rechercher un article ou un membre"
         />
         <div className="nav-header">
-          <button className="login">S'incrire | Se connecter</button>
+          <Link to={"/signup"}>
+            <button className="login">S'incrire | Se connecter</button>
+          </Link>
           <button className="sell-article">Vends tes articles</button>
           <button className="help">
             <IoIosHelpCircleOutline size={30} />
