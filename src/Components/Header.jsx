@@ -17,7 +17,7 @@ const Header = ({ token, setToken }) => {
         <input
           type="text"
           className="search-text"
-          placeholder="Rechercher un article ou un membre"
+          placeholder="Rechercher un article ou un vendeur"
         />
         <div className="nav-header">
           {!cookies && (
