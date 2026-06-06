@@ -24,6 +24,3 @@ dist-ssr
 *.sw?
 .env
 .env.production
-
-# Page Test
-/src/Pages/Test.jsx
