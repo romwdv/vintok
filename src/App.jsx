@@ -10,7 +10,7 @@ import Login from "./Pages/Login";
 function App() {
   const [token, setToken] = useState();
   const [userSearch, setUserSearch] = useState("");
-  const [dataFetch, setDataFetch] = useState(null);
+  const [dataFetch, setDataFetch] = useState({ offers: [] });
 
   return (
     <Router>
