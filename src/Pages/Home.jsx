@@ -30,7 +30,7 @@ const Home = ({ dataFetch, setDataFetch, userSearch }) => {
       </div>
       <section className="products">
         <div className="container">
-          {(dataFetch?.offers || [])
+          {(dataFetch || [])
             .filter((item) =>
               (item.product_description || "")
                 .toLowerCase()
