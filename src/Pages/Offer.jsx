@@ -30,7 +30,7 @@ const Offer = () => {
 
     const fetchOffers = async () => {
       const response = await axios.get(
-        "https://lereacteur-vinted-api.herokuapp.com/offers",
+        `${import.meta.env.VITE_API_URL}/offers`,
       );
       const found = response.data.offers.find((item) => item._id === id);
       setOffer(found);
