@@ -29,9 +29,7 @@ const Offer = () => {
     if (state?.item) return; // data déjà disponible, pas besoin d'appel
 
     const fetchOffers = async () => {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/offers`,
-      );
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/offer`);
       const found = response.data.find((item) => item._id === id);
       setOffer(found);
       setIsLoading(false);
