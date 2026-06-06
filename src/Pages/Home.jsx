@@ -20,8 +20,6 @@ const Home = ({ dataFetch, setDataFetch, userSearch }) => {
 
   const searchText = userSearch?.toLowerCase() || "";
 
-  console.log(userSearch);
-
   if (IsLoading) return <p>on load</p>;
   return (
     <>
@@ -37,8 +35,12 @@ const Home = ({ dataFetch, setDataFetch, userSearch }) => {
                 .includes(searchText),
             )
             .map((item) => {
-              const marque = item.product_details.find((d) => d.MARQUE)?.MARQUE;
-              const taille = item.product_details.find((d) => d.TAILLE)?.TAILLE;
+              const marque = (item.product_details || []).find(
+                (d) => d.MARQUE,
+              )?.MARQUE;
+              const taille = (item.product_details || []).find(
+                (d) => d.TAILLE,
+              )?.TAILLE;
               // const etat = item.product_details.find((d) => d.ÉTAT)?.ÉTAT;
               return (
                 <Link
