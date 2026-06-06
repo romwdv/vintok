@@ -22,6 +22,10 @@ h2 {
   font-size: 1.37rem;
 }
 
+button {
+  cursor: pointer;
+}
+
 header {
   height: 70px;
   width: 100vw;
@@ -106,7 +110,12 @@ header .container {
   align-items: center;
 }
 
+.search input:focus-visible {
+  border: none;
+}
+
 .search input {
+  font-size: 1.2rem;
   border: none;
   background-color: #edf2f2;
   width: 100%;
@@ -168,8 +177,10 @@ header .container {
 
 .offer {
   display: flex;
+  align-items: flex-start;
   gap: 50px;
   width: 100%;
+  margin-top: 50px;
 }
 
 .info {
@@ -180,6 +191,7 @@ header .container {
   display: flex;
   gap: 15px;
   flex: 2;
+  align-items: flex-start;
 }
 
 .pictures img {
@@ -191,6 +203,11 @@ header .container {
   flex: 3;
 }
 
+.thumb_picture {
+  gap: 15px;
+  align-items: flex-start;
+}
+
 .pictures .thumb_picture {
   display: flex;
   flex-direction: column;
@@ -199,14 +216,34 @@ header .container {
 
 .thumb_picture img {
   width: 190px;
+  height: calc(100%-30px) / 3;
   object-fit: cover;
 }
-
-.product_info {
+aside {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  flex: 1;
+}
+.product_info,
+.user-info {
+  display: flex;
+  flex-direction: column;
   border: 1px solid lightgray;
   border-radius: 5px;
   padding: 15px;
-  flex: 1;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.info-details {
+  display: flex;
+  flex-direction: column;
 }
 
 .price {
@@ -227,6 +264,15 @@ header .container {
   font-size: 1.1rem;
 }
 
+.product_detail {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
 .brand,
 .size,
 .etat,
@@ -234,6 +280,54 @@ header .container {
 .date {
   display: flex;
   justify-content: space-between;
+}
+
+.product_info .description {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.product_actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.product_actions button:not(:first-child) {
+  color: var(--primary-color);
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  font-weight: 500;
+  font-family: "V_Inter_Medium";
+  font-size: 1.1rem;
+  background-color: white;
+}
+
+.product_actions .sell-article {
+  height: 44px;
+  padding: 0 16px;
+  font-weight: 500;
+  font-family: "V_Inter_Medium";
+  font-size: 1.1rem;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-info p {
+  font-weight: bold;
+}
+
+.user-info img {
+  width: 40px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 /* Signup */
@@ -272,6 +366,7 @@ input:focus-visible {
 
 input::placeholder {
   font-size: 1.2rem;
+  color: rgb(161, 161, 161);
 }
 
 input[type="submit"] {

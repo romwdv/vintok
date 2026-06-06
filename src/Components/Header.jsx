@@ -1,11 +1,11 @@
 import logo from "../assets/logo.png";
-import { IoIosHelpCircleOutline } from "react-icons/io";
+import { IoIosHelpCircleOutline, IoIosSearch } from "react-icons/io";
 import { TiDeleteOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-const Header = ({ token, setToken, setUserSearch, userSearch }) => {
+const Header = ({ setToken, setUserSearch, userSearch }) => {
   const navigate = useNavigate();
 
   const cookies = Cookies.get("vintok");
@@ -27,8 +27,10 @@ const Header = ({ token, setToken, setUserSearch, userSearch }) => {
             type="text"
             className="search-text"
             placeholder="Rechercher un article ou un membre"
+            value={userSearch ? userSearch : ""}
             onChange={(e) => setUserSearch(e.target.value)}
           />
+          <IoIosSearch size={28} color={"#949494"} />
         </div>
         <div className="nav-header">
           {!cookies && (
