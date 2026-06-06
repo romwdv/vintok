@@ -6,19 +6,12 @@ import Home from "./Pages/Home";
 import Offer from "./Pages/Offer";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
-<<<<<<< HEAD
-import Cookies from "js-cookie";
-
-function App() {
-  const [token, setToken] = useState(Cookies.get("vintok") || null);
-=======
 import Test from "./Pages/Test";
 
 function App() {
   const [token, setToken] = useState();
   const [userSearch, setUserSearch] = useState("");
   const [dataFetch, setDataFetch] = useState(null);
->>>>>>> develop
 
   return (
     <Router>
