@@ -32,20 +32,19 @@ const Offer = () => {
       const response = await axios.get(
         `${import.meta.env.VITE_API_URL}/offers`,
       );
-      const found = response.data.offers.find((item) => item._id === id);
+      const found = response.data.find((item) => item._id === id);
       setOffer(found);
       setIsLoading(false);
     };
     fetchOffers();
   }, [id]);
 
-  const marque = offer.product_details.find((d) => d.MARQUE)?.MARQUE;
-  const taille = offer.product_details.find((d) => d.TAILLE)?.TAILLE;
-  const etat = offer.product_details.find((d) => d.ÉTAT)?.ÉTAT;
-  const couleur = offer.product_details.find((d) => d.COULEUR)?.COULEUR;
-
   if (isLoading) return <p>Chargement...</p>;
   if (!offer) return <p>Offre introuvable</p>;
+  const marque = (offer.product_details || []).find((d) => d.MARQUE)?.MARQUE;
+  const taille = (offer.product_details || []).find((d) => d.TAILLE)?.TAILLE;
+  const etat = (offer.product_details || []).find((d) => d.ÉTAT)?.ÉTAT;
+  const couleur = (offer.product_details || []).find((d) => d.COULEUR)?.COULEUR;
 
   return (
     <>
