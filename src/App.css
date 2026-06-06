@@ -61,7 +61,8 @@ header .container {
 .country,
 .login,
 .sell-article,
-.logout {
+.logout,
+.hero-hover button {
   border: none;
   background-color: white;
   cursor: pointer;
@@ -125,8 +126,38 @@ header .container {
 /* Home */
 
 .hero {
+  position: relative;
   height: 600px;
   margin-bottom: 50px;
+}
+
+.hero-hover {
+  height: 260px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  bottom: 30%;
+  left: 23%;
+  background-color: white;
+  border-radius: 5px;
+  padding: 32px;
+}
+
+.hero-hover p {
+  color: var(--primary-color);
+  text-align: center;
+  font-weight: 500;
+}
+.hero-hover h2 {
+  font-family: "V_Inter_Medium";
+}
+.hero-hover button {
+  height: 44px;
+  text-align: center;
+  background-color: var(--primary-color);
+  font-weight: 500;
 }
 
 .hero img {

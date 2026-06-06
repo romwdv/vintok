@@ -27,6 +27,11 @@ const Home = ({ dataFetch, setDataFetch, userSearch }) => {
     <>
       <div className="hero">
         <img src={hero} alt="hero section" />
+        <div className="hero-hover">
+          <h2>Prêt à faire du tri dans tes placards ?</h2>
+          <button className="sell-article">Commencez à vendre</button>
+          <p>Comment ça marche ?</p>
+        </div>
       </div>
       <section className="products">
         <div className="container">
