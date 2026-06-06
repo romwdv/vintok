@@ -32,6 +32,7 @@ const Offer = () => {
       const response = await axios.get(
         `${import.meta.env.VITE_API_URL}/offers`,
       );
+      console.log(response.data);
       const found = response.data.offers.find((item) => item._id === id);
       setOffer(found);
       setIsLoading(false);
