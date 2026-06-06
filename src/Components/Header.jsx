@@ -15,13 +15,6 @@ const Header = ({ token, setToken, setUserSearch, userSearch }) => {
         <Link to={"/"}>
           <img src={logo} alt="logo vintok" />
         </Link>
-<<<<<<< HEAD
-        <input
-          type="text"
-          className="search-text"
-          placeholder="Rechercher un article"
-        />
-=======
         <div className="search">
           {userSearch && (
             <TiDeleteOutline
@@ -37,7 +30,6 @@ const Header = ({ token, setToken, setUserSearch, userSearch }) => {
             onChange={(e) => setUserSearch(e.target.value)}
           />
         </div>
->>>>>>> develop
         <div className="nav-header">
           {!cookies && (
             <Link to={"/signup"}>
