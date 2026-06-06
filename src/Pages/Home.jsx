@@ -11,7 +11,7 @@ const Home = ({ dataFetch, setDataFetch, userSearch }) => {
       const response = await axios.get(
         `${import.meta.env.VITE_API_URL}/offers`,
       );
-
+      console.log(`response => ${response.data}`);
       setDataFetch(response.data);
       setIsLoading(false);
     };
