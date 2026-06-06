@@ -6,7 +6,6 @@ import Home from "./Pages/Home";
 import Offer from "./Pages/Offer";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
-import Test from "./Pages/Test";
 
 function App() {
   const [token, setToken] = useState();
@@ -37,10 +36,6 @@ function App() {
         <Route
           path="/login"
           element={<Login token={token} setToken={setToken} />}
-        />
-        <Route
-          path="/test"
-          element={<Test dataFetch={dataFetch} userSearch={userSearch} />}
         />
       </Routes>
     </Router>
