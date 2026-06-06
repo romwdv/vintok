@@ -1,10 +1,11 @@
 import logo from "../assets/logo.png";
 import { IoIosHelpCircleOutline } from "react-icons/io";
+import { TiDeleteOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-const Header = ({ token, setToken }) => {
+const Header = ({ token, setToken, setUserSearch, userSearch }) => {
   const navigate = useNavigate();
 
   const cookies = Cookies.get("vintok");
@@ -14,11 +15,21 @@ const Header = ({ token, setToken }) => {
         <Link to={"/"}>
           <img src={logo} alt="logo vintok" />
         </Link>
-        <input
-          type="text"
-          className="search-text"
-          placeholder="Rechercher un article ou un membre"
-        />
+        <div className="search">
+          {userSearch && (
+            <TiDeleteOutline
+              size={28}
+              color={"#949494"}
+              onClick={() => setUserSearch("")}
+            />
+          )}
+          <input
+            type="text"
+            className="search-text"
+            placeholder="Rechercher un article ou un membre"
+            onChange={(e) => setUserSearch(e.target.value)}
+          />
+        </div>
         <div className="nav-header">
           {!cookies && (
             <Link to={"/signup"}>
@@ -41,7 +52,9 @@ const Header = ({ token, setToken }) => {
           <button className="help">
             <IoIosHelpCircleOutline size={30} />
           </button>
-          <button className="country">FR</button>
+          <button className="country">
+            <Link to={"/test"}>FR</Link>
+          </button>
         </div>
       </div>
     </header>

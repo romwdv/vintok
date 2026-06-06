@@ -95,13 +95,22 @@ header .container {
   background-color: var(--primary-color-hover);
 }
 
-.search-text {
+.search {
   background-color: var(--bg-search);
   border-radius: 10px;
   border: none;
   flex: 1;
   height: 40px;
   padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.search input {
+  border: none;
+  background-color: #edf2f2;
+  width: 100%;
+  color: rgb(142, 141, 141);
 }
 
 /* Home */
