@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import avatarFake from "../assets/avatar.jpg";
 // import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -33,6 +34,7 @@ const Offer = () => {
       const found = response.data.find((item) => item._id === id);
       setOffer(found);
       setIsLoading(false);
+      console.log("res found", found);
     };
     fetchOffers();
   }, [id]);
@@ -51,21 +53,27 @@ const Offer = () => {
           <div className="pictures">
             <div className="main_picture">
               <img
-                src={offer.product_pictures[activeImg].url}
+                src={
+                  Array.isArray(offer.product_image)
+                    ? offer.product_image[0].secure_url
+                    : offer.product_image.secure_url
+                }
                 alt={offer.product_name}
               />
             </div>
-            <div className="thumb_picture">
-              {offer.product_pictures.map((picture, index) => (
-                <img
-                  key={index}
-                  src={picture.secure_url}
-                  alt={`photo ${index + 1}`}
-                  className={index === activeImg ? "active" : ""}
-                  onClick={() => setActiveImg(index)}
-                />
-              ))}
-            </div>
+            {Array.isArray(offer.product_image) && (
+              <div className="thumb_picture">
+                {offer.product_image.map((picture, index) => (
+                  <img
+                    key={index}
+                    src={picture.secure_url}
+                    alt={`photo ${index + 1}`}
+                    className={index === activeImg ? "active" : ""}
+                    onClick={() => setActiveImg(index)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
           <aside>
             <div className="product_info">
@@ -145,7 +153,13 @@ const Offer = () => {
               </div>
             </div>
             <div className="user-info">
-              <img src={offer.owner.account.avatar.secure_url} />
+              <img
+                src={
+                  offer.owner.account.avatar
+                    ? offer.owner.account.avatar.secure_url
+                    : avatarFake
+                }
+              />
               <p>{offer.owner.account.username}</p>
             </div>
           </aside>

@@ -1,6 +1,7 @@
 import hero from "../assets/banner-wide.jpg";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { CgLogIn } from "react-icons/cg";
 import { Link } from "react-router-dom";
 
 const Home = ({ dataFetch, setDataFetch, userSearch }) => {
@@ -11,15 +12,15 @@ const Home = ({ dataFetch, setDataFetch, userSearch }) => {
       const response = await axios.get(
         `${import.meta.env.VITE_API_URL}/offers`,
       );
-      console.log(`response => ${response.data}`);
       setDataFetch(response.data);
       setIsLoading(false);
     };
     fetchData();
   }, [setDataFetch]);
 
-  const searchText = userSearch?.toLowerCase() || "";
+  console.log("datafetch", dataFetch);
 
+  const searchText = userSearch?.toLowerCase() || "";
   if (IsLoading) return <p>on load</p>;
   return (
     <>
@@ -50,7 +51,11 @@ const Home = ({ dataFetch, setDataFetch, userSearch }) => {
                   state={{ item }}
                 >
                   <img
-                    src={item.product_image.secure_url}
+                    src={
+                      Array.isArray(item.product_image)
+                        ? item.product_image[0].secure_url
+                        : item.product_image.secure_url
+                    }
                     alt={item.product_name}
                   />
                   {marque && <span>{marque}</span>}
