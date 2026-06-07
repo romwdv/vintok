@@ -20,21 +20,18 @@ const Offer = () => {
       .map((char, index) => (index === 0 ? char.toUpperCase() : char))
       .join("");
   }
-  const id = useParams();
-  const { state } = useLocation();
-  const [offer, setOffer] = useState(state?.item || null);
-  const [isLoading, setIsLoading] = useState(!state?.item);
+  const { id } = useParams();
+  const [offer, setOffer] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [activeImg, setActiveImg] = useState(0);
 
   useEffect(() => {
-    if (state?.item) return; // data déjà disponible, pas besoin d'appel
-
     const fetchOffers = async () => {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/offer`);
-      const found = response.data.find((item) => item._id === id);
-      setOffer(found);
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/offer/${id}`,
+      );
+      setOffer(response.data);
       setIsLoading(false);
-      console.log("res found", found);
     };
     fetchOffers();
   }, [id]);
@@ -160,6 +157,7 @@ const Offer = () => {
                     : avatarFake
                 }
               />
+              {console.log("offer =>", offer)}
               <p>{offer.owner.account.username}</p>
             </div>
           </aside>
