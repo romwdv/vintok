@@ -59,7 +59,7 @@ const Offer = () => {
               {offer.product_pictures.map((picture, index) => (
                 <img
                   key={index}
-                  src={picture.url}
+                  src={picture.secure_url}
                   alt={`photo ${index + 1}`}
                   className={index === activeImg ? "active" : ""}
                   onClick={() => setActiveImg(index)}

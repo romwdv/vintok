@@ -49,7 +49,10 @@ const Home = ({ dataFetch, setDataFetch, userSearch }) => {
                   className="product"
                   state={{ item }}
                 >
-                  <img src={item.product_image.url} alt={item.product_name} />
+                  <img
+                    src={item.product_image.secure_url}
+                    alt={item.product_name}
+                  />
                   {marque && <span>{marque}</span>}
                   <div className="product_desc">
                     {taille && <span>{taille} </span>}
