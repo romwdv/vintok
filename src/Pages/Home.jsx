@@ -1,22 +1,23 @@
 import hero from "../assets/banner-wide.jpg";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { CgLogIn } from "react-icons/cg";
 import { Link } from "react-router-dom";
+import Filtres from "../Components/Filtres";
 
 const Home = ({ dataFetch, setDataFetch, userSearch }) => {
   const [IsLoading, setIsLoading] = useState(true);
+  const [sortDesc, setSortDesc] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/offers`,
+        `${import.meta.env.VITE_API_URL}/offers?sort=${!sortDesc ? "product-asc" : "product-desc"}`,
       );
       setDataFetch(response.data);
       setIsLoading(false);
     };
     fetchData();
-  }, [setDataFetch]);
+  }, [sortDesc, setDataFetch]);
 
   console.log("datafetch", dataFetch);
 
@@ -27,6 +28,7 @@ const Home = ({ dataFetch, setDataFetch, userSearch }) => {
       <div className="hero">
         <img src={hero} alt="hero section" />
       </div>
+      <Filtres sortDesc={sortDesc} setSortDesc={setSortDesc} />
       <section className="products">
         <div className="container">
           {(dataFetch || [])

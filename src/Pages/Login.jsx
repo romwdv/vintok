@@ -7,8 +7,7 @@ const Login = ({ token, setToken }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  console.log(token);
-  
+
   return !token ? (
     <section className="container">
       <div>

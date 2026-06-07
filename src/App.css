@@ -36,7 +36,8 @@ header {
   border-bottom: 1px solid lightgrey;
 }
 
-.container {
+.container,
+.filtres {
   display: flex;
   max-width: 1220px;
   width: 100%;
@@ -135,7 +136,18 @@ header .container {
   object-fit: cover;
 }
 
+/* Filtres */
+
+.filtres {
+  margin-bottom: 30px;
+}
+
 /* Products */
+
+.products {
+  display: flex;
+  flex-direction: column;
+}
 
 /* Le conteneur flex */
 .container {
