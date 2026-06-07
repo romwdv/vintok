@@ -1,4 +1,6 @@
 @import url(font.css);
+@import url(theme.css);
+@import url("utilities.css");
 
 :root {
   --primary-color: #007782;
@@ -139,7 +141,37 @@ header .container {
 /* Filtres */
 
 .filtres {
+  display: flex;
+  flex-direction: row;
+  align-items: self-end;
+  gap: 80px;
   margin-bottom: 30px;
+  width: 100%;
+  min-height: 50px;
+  height: auto;
+}
+.filtres > div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.filtres .sort-price {
+  font-family: "V_Inter_Regular_375";
+  background-color: var(--bg-search);
+  border-radius: 20px;
+  padding: 8px 12px;
+  border: 1px solid lightgrey;
+  cursor: pointer;
+}
+
+input[type="range"] {
+  all: unset;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 /* Products */
@@ -363,7 +395,7 @@ form {
   width: 400px;
 }
 
-form input {
+form input:not([type="range"]) {
   margin-bottom: 56px;
   border: none;
   border-bottom: 1px solid lightgrey;
