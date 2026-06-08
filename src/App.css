@@ -70,7 +70,8 @@ header .container {
   cursor: pointer;
 }
 
-.login {
+.login,
+label[for="picture"] {
   color: var(--primary-color);
   padding: 5px;
   border: 1px solid lightgray;
@@ -395,7 +396,8 @@ form {
   width: 400px;
 }
 
-form input:not([type="range"]) {
+form input:not([type="range"]),
+textarea {
   margin-bottom: 56px;
   border: none;
   border-bottom: 1px solid lightgrey;
@@ -440,4 +442,25 @@ section.container p span {
   text-decoration: underline;
   margin-bottom: 30px;
   cursor: pointer;
+}
+
+/* Publish */
+
+#picture {
+  display: none;
+}
+
+section.publish label {
+  margin-bottom: 10px;
+}
+section.publish label:last-child() {
+  margin-bottom: 20px;
+}
+
+label[for="picture"] {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 20px;
 }

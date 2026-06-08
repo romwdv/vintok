@@ -50,7 +50,9 @@ const Header = ({ setToken, setUserSearch, userSearch }) => {
               Se déconnecter
             </button>
           )}
-          <button className="sell-article">Vends tes articles</button>
+          <Link to={"/publish"}>
+            <button className="sell-article">Vends tes articles</button>
+          </Link>
           <button className="help">
             <IoIosHelpCircleOutline size={30} />
           </button>

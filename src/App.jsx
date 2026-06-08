@@ -6,6 +6,7 @@ import Home from "./Pages/Home";
 import Offer from "./Pages/Offer";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
+import Publish from "./Pages/Publish";
 
 function App() {
   const [token, setToken] = useState();
@@ -37,6 +38,7 @@ function App() {
           path="/login"
           element={<Login token={token} setToken={setToken} />}
         />
+        <Route path="/publish" element={<Publish />} />
       </Routes>
     </Router>
   );

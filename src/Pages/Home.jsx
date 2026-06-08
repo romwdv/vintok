@@ -9,7 +9,7 @@ const Home = ({ dataFetch, setDataFetch, userSearch }) => {
   const [IsLoading, setIsLoading] = useState(true);
   const [sortDesc, setSortDesc] = useState(false);
   const [rangePrice, setRangePrice] = useState([0, 1000]);
-  console.log(rangePrice[1]);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
