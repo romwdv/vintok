@@ -21,6 +21,7 @@ const Publish = () => {
     const token = isLogin;
     const formData = new FormData();
 
+    // modif
     formData.append("title", title);
     formData.append("description", description);
     formData.append("price", price);
