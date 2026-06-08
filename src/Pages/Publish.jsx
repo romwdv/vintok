@@ -25,9 +25,9 @@ const Publish = () => {
     formData.append("description", description);
     formData.append("price", price);
     formData.append("condition", condition);
-    formData.append("taille", size);
-    formData.append("couleur", color);
-    formData.append("marque", brand);
+    formData.append("size", size);
+    formData.append("color", color);
+    formData.append("brand", brand);
     formData.append("picture", picture);
 
     try {
