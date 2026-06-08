@@ -10,9 +10,9 @@ const Publish = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [condition, setCondition] = useState("");
-  const [taille, setTaille] = useState("");
-  const [couleur, setCouleur] = useState("");
-  const [marque, setMarque] = useState("");
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
+  const [brand, setBrand] = useState("");
   const [picture, setPicture] = useState(null);
 
   const handleSubmit = async (event) => {
@@ -25,9 +25,9 @@ const Publish = () => {
     formData.append("description", description);
     formData.append("price", price);
     formData.append("condition", condition);
-    formData.append("taille", taille);
-    formData.append("couleur", couleur);
-    formData.append("marque", marque);
+    formData.append("taille", size);
+    formData.append("couleur", color);
+    formData.append("marque", brand);
     formData.append("picture", picture);
 
     try {
@@ -67,9 +67,9 @@ const Publish = () => {
             name="marque"
             id="marque"
             placeholder="Marque"
-            value={marque}
+            value={brand}
             onChange={(event) => {
-              setMarque(event.target.value);
+              setBrand(event.target.value);
             }}
           />
           <input
@@ -77,9 +77,9 @@ const Publish = () => {
             name="Taille"
             id="Taille"
             placeholder="Taille"
-            value={taille}
+            value={size}
             onChange={(event) => {
-              setTaille(event.target.value);
+              setSize(event.target.value);
             }}
           />
           <input
@@ -87,9 +87,9 @@ const Publish = () => {
             name="couleur"
             id="couleur"
             placeholder="Couleur"
-            value={couleur}
+            value={color}
             onChange={(event) => {
-              setCouleur(event.target.value);
+              setColor(event.target.value);
             }}
           />
           <input
