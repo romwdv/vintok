@@ -3,10 +3,9 @@ import { Link, useLocation, Navigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const Signup = ({ setToken }) => {
+const Signup = ({ token, setToken }) => {
   const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const fromQuery = searchParams.get("from");
+  const from = location.state?.from || { pathname: "/", state: null };
   const [redirectTo, setRedirectTo] = useState(null);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -14,6 +13,10 @@ const Signup = ({ setToken }) => {
 
   if (redirectTo) {
     return <Navigate to={redirectTo} replace />;
+  }
+
+  if (token) {
+    return <Navigate to={from.pathname} replace state={from.state} />;
   }
 
   return (
@@ -34,8 +37,7 @@ const Signup = ({ setToken }) => {
               );
               setToken(response.data.token);
               Cookies.set("vintok", response.data.token);
-              const from = fromQuery || location.state?.from || "/";
-              setRedirectTo(from);
+              setRedirectTo({ pathname: from.pathname, state: from.state });
             } catch (error) {
               alert(error.response);
             }
@@ -70,11 +72,7 @@ const Signup = ({ setToken }) => {
         </form>
         <p>
           Tu as déjà un compte ?{" "}
-          <Link
-            to={`/login?from=${encodeURIComponent(
-              fromQuery || location.state?.from || "/",
-            )}`}
-          >
+          <Link to="/login" state={location.state}>
             <span>Se connecter</span>
           </Link>
         </p>

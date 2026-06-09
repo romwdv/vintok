@@ -10,8 +10,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBKEY);
 const Paiment = ({ token }) => {
   const [offer, setOffer] = useState(null);
   const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const offerId = searchParams.get("id");
+  const offerId = location.state?.offerId || location.state?.id;
 
   useEffect(() => {
     const fetchOffers = async () => {
@@ -25,12 +24,12 @@ const Paiment = ({ token }) => {
     }
   }, [offerId]);
 
+  if (!offerId) return <Navigate to="/" replace />;
   if (!token)
     return (
       <Navigate
-        to={`/login?from=${encodeURIComponent(
-          `${location.pathname}${location.search}`,
-        )}`}
+        to="/login"
+        state={{ from: { pathname: "/paiement", state: { offerId } } }}
         replace
       />
     );
@@ -47,6 +46,17 @@ const Paiment = ({ token }) => {
     // Devise de la transaction
     currency: "eur",
     payment_method_types: ["card"],
+    fields: {
+      billingDetails: {
+        name: "never",
+        email: "never",
+        phone: "never",
+        address: "never",
+      },
+      wallets: {
+        link: "never",
+      },
+    },
     appearance: {
       theme: "flat",
       labels: "floating",
@@ -65,7 +75,7 @@ const Paiment = ({ token }) => {
 
   return (
     <div className="container paiement">
-      <p>Montant à payer {(totalPrice / 100).toFixed(2)}€</p>
+      <p>Montant à payer: {(totalPrice / 100).toFixed(2)}€</p>
       <Elements stripe={stripePromise} options={options}>
         <CheckoutForm paymentData={paymentData} />
       </Elements>

@@ -5,8 +5,7 @@ import Cookies from "js-cookie";
 
 const Login = ({ token, setToken }) => {
   const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const fromQuery = searchParams.get("from");
+  const from = location.state?.from || { pathname: "/", state: null };
   const [redirectTo, setRedirectTo] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,8 +15,7 @@ const Login = ({ token, setToken }) => {
   }
 
   if (token) {
-    const from = fromQuery || location.state?.from || "/";
-    return <Navigate to={from} replace />;
+    return <Navigate to={from.pathname} replace state={from.state} />;
   }
 
   return (
@@ -37,8 +35,7 @@ const Login = ({ token, setToken }) => {
               setToken(response.data.token);
               Cookies.set("vintok", response.data.token);
               console.log(response.data);
-              const from = fromQuery || location.state?.from || "/";
-              setRedirectTo(from);
+              setRedirectTo({ pathname: from.pathname, state: from.state });
             } catch (error) {
               alert(error.response);
             }
@@ -66,11 +63,7 @@ const Login = ({ token, setToken }) => {
         </form>
         <p>
           Tu n'as pas de compte ?
-          <Link
-            to={`/signup?from=${encodeURIComponent(
-              fromQuery || location.state?.from || "/",
-            )}`}
-          >
+          <Link to="/signup" state={location.state}>
             <span>S'inscrire</span>
           </Link>
         </p>

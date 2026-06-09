@@ -2,6 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import Header from "./Components/Header";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import Home from "./Pages/Home";
 import Offer from "./Pages/Offer";
@@ -9,9 +10,10 @@ import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import Publish from "./Pages/Publish";
 import Paiment from "./Pages/Paiment";
+import PaymentConfirmationPage from "./Components/PaymentConfirmationPage";
 
 function App() {
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(() => Cookies.get("vintok"));
   const [userSearch, setUserSearch] = useState("");
   const [dataFetch, setDataFetch] = useState([]);
   const [publishNotLogged, setPublishNotLogged] = useState(false);
@@ -40,7 +42,7 @@ function App() {
           path="/signup"
           publishNotLogged={publishNotLogged}
           setPublishNotLogged={setPublishNotLogged}
-          element={<Signup setToken={setToken} />}
+          element={<Signup token={token} setToken={setToken} />}
         />
         <Route
           path="/login"
@@ -59,6 +61,10 @@ function App() {
           element={<Publish />}
         />
         <Route path="/paiement" element={<Paiment token={token} />}></Route>
+        <Route
+          path="/payment-confirmation"
+          element={<PaymentConfirmationPage />}
+        />
       </Routes>
     </Router>
   );

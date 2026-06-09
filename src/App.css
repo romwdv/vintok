@@ -6,6 +6,8 @@
   --primary-color: #007782;
   --primary-color-hover: #097a85;
   --bg-search: #edf2f2;
+  --bg-alert-color: #fb923c;
+  --bg-red-alert: #ef4444;
   --button-over: #fbfcfc;
   --button-red: #d63638;
   --button-red-hover: #b32d2e;
@@ -354,10 +356,11 @@ aside {
 
 .product_actions .sell-article {
   height: 44px;
-  padding: 0 16px;
+
   font-weight: 500;
   font-family: "V_Inter_Medium";
   font-size: 1.1rem;
+  text-align: center;
 }
 
 .user-info {
@@ -492,4 +495,34 @@ label[for="picture"] {
   margin: 0 auto;
   padding: 15px;
   width: 70%;
+}
+
+.paymentStatus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+.success,
+.pending,
+.reject {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 50%;
+  height: 150px;
+  border-radius: 5px;
+  font-size: 2.5rem;
+  color: white;
+}
+
+.success {
+  background-color: var(--primary-color);
+}
+.pending {
+  background-color: var(--alert-color);
+}
+.reject {
+  background-color: var(--bg-red-alert);
 }

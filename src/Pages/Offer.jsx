@@ -143,7 +143,11 @@ const Offer = () => {
                 <p>{capitalizeFirst(offer.product_description)}</p>
               </div>
               <div className="product_actions">
-                <Link to={`/paiement?id=${id}`} className="sell-article">
+                <Link
+                  to="/paiement"
+                  state={{ offerId: id }}
+                  className="sell-article"
+                >
                   Acheter
                 </Link>
                 <button>Faire une offre</button>

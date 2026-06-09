@@ -51,10 +51,10 @@ const CheckoutForm = ({ paymentData }) => {
       clientSecret,
       // Éventuelle redirection
       confirmParams: {
-        return_url: "http://localhost:5173/",
+        return_url: `${window.location.origin}/payment-confirmation`,
       },
       // Bloque la redirections
-      redirect: "if_required",
+      //   redirect: "if_required",
     });
 
     // Si une erreur a lieu pendant la confirmation
