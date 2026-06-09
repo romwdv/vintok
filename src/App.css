@@ -68,6 +68,7 @@ header .container {
   border: none;
   background-color: white;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .login,
@@ -91,7 +92,8 @@ label[for="picture"] {
   background-color: var(--button-red-hover);
 }
 
-.sell-article {
+.sell-article,
+.paiement > p {
   background-color: var(--primary-color);
   color: white;
   padding: 5px;
@@ -463,4 +465,31 @@ label[for="picture"] {
   align-items: center;
   cursor: pointer;
   padding: 20px;
+}
+
+/* Paiment */
+
+.paiement {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.paiement form {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.paiement form button {
+  width: 50%;
+  height: 60px;
+  margin: 0 auto;
+}
+
+.paiement > p {
+  font-size: 1.5rem;
+  margin: 0 auto;
+  padding: 15px;
+  width: 70%;
 }

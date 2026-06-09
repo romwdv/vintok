@@ -1,13 +1,20 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, Navigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 
 const Signup = ({ setToken }) => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const fromQuery = searchParams.get("from");
+  const [redirectTo, setRedirectTo] = useState(null);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+
+  if (redirectTo) {
+    return <Navigate to={redirectTo} replace />;
+  }
 
   return (
     <section className="container">
@@ -27,7 +34,8 @@ const Signup = ({ setToken }) => {
               );
               setToken(response.data.token);
               Cookies.set("vintok", response.data.token);
-              navigate("/");
+              const from = fromQuery || location.state?.from || "/";
+              setRedirectTo(from);
             } catch (error) {
               alert(error.response);
             }
@@ -62,7 +70,9 @@ const Signup = ({ setToken }) => {
         </form>
         <p>
           Tu as déjà un compte ?{" "}
-          <Link to={"/login"}>
+          <Link to={`/login?from=${encodeURIComponent(
+            fromQuery || location.state?.from || "/",
+          )}`}>
             <span>Se connecter</span>
           </Link>
         </p>
@@ -70,5 +80,6 @@ const Signup = ({ setToken }) => {
     </section>
   );
 };
+ 
 
 export default Signup;

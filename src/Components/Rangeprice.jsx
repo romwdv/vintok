@@ -10,7 +10,7 @@ const Rangeprice = ({ rangePrice, setRangePrice }) => {
       style={{ width: "280px", maxWidth: "100%" }}
       value={rangePrice}
       minValue={0}
-      maxValue={1000}
+      maxValue={10000}
       step={1}
       onChange={(val) => setRangePrice(val)}
       aria-label="Slider filtre prix"
@@ -101,7 +101,7 @@ const Rangeprice = ({ rangePrice, setRangePrice }) => {
           padding: "5px",
           cursor: "pointer",
         }}
-        onClick={() => setRangePrice([0, 1000])}
+        onClick={() => setRangePrice([0, 10000])}
       >
         reset
       </p>

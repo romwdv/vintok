@@ -8,7 +8,7 @@ import Rangeprice from "../Components/Rangeprice";
 const Home = ({ dataFetch, setDataFetch, userSearch }) => {
   const [IsLoading, setIsLoading] = useState(true);
   const [sortDesc, setSortDesc] = useState(false);
-  const [rangePrice, setRangePrice] = useState([0, 1000]);
+  const [rangePrice, setRangePrice] = useState([0, 10000]);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import avatarFake from "../assets/avatar.jpg";
 // import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -24,6 +24,8 @@ const Offer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [activeImg, setActiveImg] = useState(0);
 
+  console.log(id);
+
   useEffect(() => {
     const fetchOffers = async () => {
       const response = await axios.get(
@@ -41,7 +43,7 @@ const Offer = () => {
   const taille = (offer.product_details || []).find((d) => d.TAILLE)?.TAILLE;
   const etat = (offer.product_details || []).find((d) => d.ÉTAT)?.ÉTAT;
   const couleur = (offer.product_details || []).find((d) => d.COULEUR)?.COULEUR;
-
+  const priceFees = (offer.product_price + 1.4).toFixed(2);
   return (
     <>
       <div className="container">
@@ -95,9 +97,7 @@ const Offer = () => {
                 </div>
                 <div className="price">
                   <span>{Number(offer.product_price).toFixed(2)} €</span>
-                  <span className="priceTax">
-                    {Number(offer.product_price + 1.4).toFixed(2)} €
-                  </span>
+                  <span className="priceTax">{priceFees} €</span>
                   <span>Inclut la protection des acheteurs</span>
                 </div>
               </div>
@@ -143,7 +143,9 @@ const Offer = () => {
                 <p>{capitalizeFirst(offer.product_description)}</p>
               </div>
               <div className="product_actions">
-                <button className="sell-article">Acheter</button>
+                <Link to={`/paiement?id=${id}`} className="sell-article">
+                  Acheter
+                </Link>
                 <button>Faire une offre</button>
                 <button>Message</button>
               </div>
@@ -156,7 +158,7 @@ const Offer = () => {
                     : avatarFake
                 }
               />
-              {console.log("offer =>", offer)}
+              {/* {console.log("offer =>", offer)} */}
               <p>{offer.owner.account.username}</p>
             </div>
           </aside>

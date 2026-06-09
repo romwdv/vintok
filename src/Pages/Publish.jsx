@@ -3,8 +3,13 @@ import Cookies from "js-cookie";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
 import { FcAddImage } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
 
 const Publish = () => {
+  // retour page publish après login
+  // utiliser uselocation
+  const navigate = useNavigate();
+
   const isLogin = Cookies.get("vintok");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -41,7 +46,7 @@ const Publish = () => {
           },
         },
       );
-      console.log(response.data);
+      navigate(`/offer/${response.data.id}`);
     } catch (error) {
       console.log(error.message);
     }
@@ -61,6 +66,7 @@ const Publish = () => {
             onChange={(event) => {
               setTitle(event.target.value);
             }}
+            required
           />
 
           <input
@@ -72,6 +78,7 @@ const Publish = () => {
             onChange={(event) => {
               setBrand(event.target.value);
             }}
+            required
           />
           <input
             type="text"
@@ -82,6 +89,7 @@ const Publish = () => {
             onChange={(event) => {
               setSize(event.target.value);
             }}
+            required
           />
           <input
             type="text"
@@ -92,6 +100,7 @@ const Publish = () => {
             onChange={(event) => {
               setColor(event.target.value);
             }}
+            required
           />
           <input
             type="text"
@@ -102,6 +111,7 @@ const Publish = () => {
             onChange={(event) => {
               setPrice(event.target.value);
             }}
+            required
           />
           <input
             type="text"
@@ -112,6 +122,7 @@ const Publish = () => {
             onChange={(event) => {
               setCondition(event.target.value);
             }}
+            required
           />
           <label htmlFor="description">Description :</label>
           <textarea
@@ -122,18 +133,22 @@ const Publish = () => {
             onChange={(event) => {
               setDescription(event.target.value);
             }}
+            required
           ></textarea>
           <label htmlFor="picture">
             Ajoute une photo à ton annonce <FcAddImage size={38} />
           </label>
+
           <input
             type="file"
             name="picture"
             id="picture"
+            mu
             onChange={(event) => {
               setPicture(event.target.files[0]);
             }}
           />
+
           <input
             type="submit"
             name="submit"
@@ -144,7 +159,7 @@ const Publish = () => {
       </div>
     </section>
   ) : (
-    <Navigate to="/signup" />
+    <Navigate to="/login" />
   );
 };
 
