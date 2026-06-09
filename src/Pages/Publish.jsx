@@ -3,7 +3,9 @@ import Cookies from "js-cookie";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
 import { FcAddImage } from "react-icons/fc";
+import { MdDeleteOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import "./Publish.css";
 
 const Publish = () => {
   // retour page publish après login
@@ -18,15 +20,42 @@ const Publish = () => {
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
   const [brand, setBrand] = useState("");
-  const [picture, setPicture] = useState(null);
+  const [pictures, setPictures] = useState([]);
+  const [previewUrls, setPreviewUrls] = useState([]);
+
+  const handleImageChange = (event) => {
+    const files = Array.from(event.target.files);
+
+    // Créer les aperçus des images
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrls((prev) => [...prev, reader.result]);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Ajouter les fichiers au tableau
+    setPictures((prev) => [...prev, ...files]);
+  };
+
+  const handleRemoveImage = (index) => {
+    setPictures((prev) => prev.filter((_, i) => i !== index));
+    setPreviewUrls((prev) => prev.filter((_, i) => i !== index));
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (pictures.length === 0) {
+      alert("Veuillez ajouter au moins une image");
+      return;
+    }
+
     const token = isLogin;
     const formData = new FormData();
 
-    // modif
+    // Ajouter les champs texte
     formData.append("title", title);
     formData.append("description", description);
     formData.append("price", price);
@@ -34,7 +63,11 @@ const Publish = () => {
     formData.append("size", size);
     formData.append("color", color);
     formData.append("brand", brand);
-    formData.append("picture", picture);
+
+    // Ajouter toutes les images
+    pictures.forEach((picture) => {
+      formData.append("picture", picture);
+    });
 
     try {
       const response = await axios.post(
@@ -135,19 +168,45 @@ const Publish = () => {
             }}
             required
           ></textarea>
-          <label htmlFor="picture">
-            Ajoute une photo à ton annonce <FcAddImage size={38} />
-          </label>
-
           <input
             type="file"
-            name="picture"
-            id="picture"
-            mu
-            onChange={(event) => {
-              setPicture(event.target.files[0]);
-            }}
+            name="pictures"
+            id="pictures"
+            multiple
+            accept="image/*"
+            onChange={handleImageChange}
+            style={{ display: "none" }}
           />
+          <button
+            type="button"
+            className="add-images-btn"
+            onClick={() => document.getElementById("pictures").click()}
+          >
+            <FcAddImage size={24} />
+            Ajouter des photos
+          </button>
+
+          {/* Affichage des images uploadées */}
+          {previewUrls.length > 0 && (
+            <div className="image-preview-container">
+              <h3>Images uploadées ({previewUrls.length})</h3>
+              <div className="image-gallery">
+                {previewUrls.map((url, index) => (
+                  <div key={index} className="image-item">
+                    <img src={url} alt={`Preview ${index + 1}`} />
+                    <button
+                      type="button"
+                      className="delete-image-btn"
+                      onClick={() => handleRemoveImage(index)}
+                      title="Supprimer cette image"
+                    >
+                      <MdDeleteOutline size={24} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <input
             type="submit"
