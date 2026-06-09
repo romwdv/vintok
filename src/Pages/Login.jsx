@@ -66,9 +66,11 @@ const Login = ({ token, setToken }) => {
         </form>
         <p>
           Tu n'as pas de compte ?
-          <Link to={`/signup?from=${encodeURIComponent(
-            fromQuery || location.state?.from || "/",
-          )}`}>
+          <Link
+            to={`/signup?from=${encodeURIComponent(
+              fromQuery || location.state?.from || "/",
+            )}`}
+          >
             <span>S'inscrire</span>
           </Link>
         </p>

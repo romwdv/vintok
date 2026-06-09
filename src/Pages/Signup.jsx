@@ -70,9 +70,11 @@ const Signup = ({ setToken }) => {
         </form>
         <p>
           Tu as déjà un compte ?{" "}
-          <Link to={`/login?from=${encodeURIComponent(
-            fromQuery || location.state?.from || "/",
-          )}`}>
+          <Link
+            to={`/login?from=${encodeURIComponent(
+              fromQuery || location.state?.from || "/",
+            )}`}
+          >
             <span>Se connecter</span>
           </Link>
         </p>
@@ -80,6 +82,5 @@ const Signup = ({ setToken }) => {
     </section>
   );
 };
- 
 
 export default Signup;
